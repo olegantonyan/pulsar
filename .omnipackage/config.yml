@@ -1,0 +1,16 @@
+extract_version:
+  provider: 'file'
+  file:
+    file: 'package.json'
+    regex: '"version": "(.+)-dev"'
+
+rpm: &rpm
+  installable_package_name: 'pulsar-dev'
+  before_build_script: '.omnipackage/install_nvm.sh'
+  rpm:
+    spec_template: '.omnipackage/specfile.spec.liquid'
+
+builds:
+- distro: 'opensuse_tumbleweed'
+  build_dependencies: ['libsecret-devel', 'libX11-devel', 'libxkbfile-devel', 'gcc', 'gcc-c++', 'make', 'python313-distutils-extra', 'curl', 'git']
+  <<: *rpm
