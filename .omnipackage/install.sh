@@ -7,6 +7,7 @@ set -xEeuo pipefail
 
 BUILDROOT=$1
 NAME=$2
+# PPM_EXECUTABLE=$3
 
 nvm install
 npm install -g yarn
@@ -16,7 +17,7 @@ node -v
 
 yarn install
 yarn build
-yarn build:apm
+# yarn build:apm
 
 yarn dist tar.gz
 
@@ -26,7 +27,7 @@ rm -rf $BUILDROOT/usr/lib/$NAME/resources/app/ppm/spec # shebang in some files t
 
 mkdir -p $BUILDROOT/usr/bin/
 ln -sf /usr/lib/$NAME/resources/pulsar.sh $BUILDROOT/usr/bin/$NAME
-ln -sf /usr/lib/$NAME/resources/app/ppm/bin/apm $BUILDROOT/usr/bin/${ppm_executable:-ppm}
+# ln -sf /usr/lib/$NAME/resources/app/ppm/bin/apm $BUILDROOT/usr/bin/$PPM_EXECUTABLE
 
 mkdir -p $BUILDROOT/usr/share/applications
 NAME_C="${NAME^}"

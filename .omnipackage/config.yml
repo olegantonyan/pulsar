@@ -6,7 +6,7 @@ extract_version:
 
 common: &common
   package_name: pulsar-dev
-  ppm_executable: ppm-dev
+  # ppm_executable: ppm-dev
   before_build_script: .omnipackage/install_nvm.sh
   maintainer: Oleg Antonyan <oleg.b.antonyan@gmail.com>
   homepage: https://pulsar-edit.dev
