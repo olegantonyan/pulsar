@@ -1,12 +1,12 @@
-Source: omnipackage-example-electron
-Section: sound
+Source: {{ package_name }}
+Section: editors
 Priority: optional
-Maintainer: Chuck Norris <chuck@norr.is>
+Maintainer: {{ maintainer }}
 Build-Depends: debhelper (>= 8.0.0), {{ build_dependencies | join: ', ' }}
 Standards-Version: 3.9.4
-Homepage: https://omnipackage.org
+Homepage: {{ package_name }}
 
-Package: omnipackage-example-electron
+Package: {{ package_name }}
 Architecture: amd64
 Depends: ${shlibs:Depends}, ${misc:Depends}, {{ runtime_dependencies | join: ', ' }}
-Description: Example RPM Electron project with OmniPackage
+Description: {{ description }}

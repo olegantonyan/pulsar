@@ -4,13 +4,57 @@ extract_version:
     file: 'package.json'
     regex: '"version": "(.+)-dev"'
 
+common: &common
+  package_name: pulsar-dev
+  ppm_executable: ppm-dev
+  before_build_script: .omnipackage/install_nvm.sh
+  maintainer: Oleg Antonyan <oleg.b.antonyan@gmail.com>
+  homepage: https://pulsar-edit.dev
+  description: A Community-led Hyper-Hackable Text Editor
+
 rpm: &rpm
-  installable_package_name: 'pulsar-dev'
-  before_build_script: '.omnipackage/install_nvm.sh'
+  <<: *common
   rpm:
-    spec_template: '.omnipackage/specfile.spec.liquid'
+    spec_template: .omnipackage/specfile.spec.liquid
+
+deb: &deb
+  <<: *common
+  build_dependencies: ['libsecret-1-dev', 'libx11-dev', 'libxkbfile-dev', 'build-essential', 'python3-setuptools', 'curl', 'git', 'libxshmfence-dev', 'libnss3-dev', 'libnspr4-dev', 'libatk1.0-dev', 'libatk-bridge2.0-dev', 'libdbus-1-dev', 'libgdk-pixbuf2.0-dev', 'libgtk-3-dev', 'libpango1.0-dev', 'libcairo2-dev', 'libxcomposite-dev', 'libxdamage-dev', 'libxfixes-dev', 'libxrandr-dev', 'libxkbcommon-dev', 'libgbm-dev', 'libasound2-dev', 'libcups2-dev', 'libatspi2.0-dev']
+  deb:
+    debian_templates: .omnipackage/deb
+
+opensuse: &opensuse
+  build_dependencies: ['libsecret-devel', 'libX11-devel', 'libxkbfile-devel', 'gcc', 'gcc-c++', 'make', 'python3-setuptools', 'curl', 'git']
+  <<: *rpm
+
+redhat: &redhat
+  build_dependencies: ['libsecret-devel', 'libX11-devel', 'libxkbfile-devel', 'gcc', 'gcc-c++', 'make', 'python3-setuptools', 'curl', 'git']
+  <<: *rpm
 
 builds:
 - distro: 'opensuse_tumbleweed'
-  build_dependencies: ['libsecret-devel', 'libX11-devel', 'libxkbfile-devel', 'gcc', 'gcc-c++', 'make', 'python313-distutils-extra', 'curl', 'git']
-  <<: *rpm
+  <<: *opensuse
+- distro: 'opensuse_15.6'
+  <<: *opensuse
+- distro: 'opensuse_15.5'
+  <<: *opensuse
+- distro: 'opensuse_15.4'
+  <<: *opensuse
+- distro: 'opensuse_15.3'
+  <<: *opensuse
+- distro: 'fedora_38'
+  <<: *redhat
+- distro: 'fedora_39'
+  <<: *redhat
+- distro: 'fedora_40'
+  <<: *redhat
+- distro: 'fedora_41'
+  <<: *redhat
+- distro: 'fedora_rawhide'
+  <<: *redhat
+- distro: 'ubuntu_20.04'
+  <<: *deb
+- distro: 'ubuntu_22.04'
+  <<: *deb
+- distro: 'ubuntu_24.04'
+  <<: *deb

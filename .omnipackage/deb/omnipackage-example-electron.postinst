@@ -1,7 +1,0 @@
-#!/bin/sh
-
-set -e
-
-chmod 4755 /usr/lib/omnipackage_example_electron/chrome-sandbox
-
-exit 0

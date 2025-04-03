@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-source ~/.profile
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 set -xEeuo pipefail
 
 BUILDROOT=$1
-#NAME=${installable_package_name:-pulsar}
 NAME=$2
 
 nvm install
@@ -26,7 +26,7 @@ rm -rf $BUILDROOT/usr/lib/$NAME/resources/app/ppm/spec # shebang in some files t
 
 mkdir -p $BUILDROOT/usr/bin/
 ln -sf /usr/lib/$NAME/resources/pulsar.sh $BUILDROOT/usr/bin/$NAME
-ln -sf /usr/lib/$NAME/resources/app/ppm/bin/apm $BUILDROOT/usr/bin/ppm
+ln -sf /usr/lib/$NAME/resources/app/ppm/bin/apm $BUILDROOT/usr/bin/${ppm_executable:-ppm}
 
 mkdir -p $BUILDROOT/usr/share/applications
 NAME_C="${NAME^}"

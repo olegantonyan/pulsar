@@ -1,9 +1,9 @@
-Name:       pulsar-dev
+Name:       {{ package_name }}
 Version:    {{ version }}
 Release:    1%{?dist}
-Summary:    Pulsar editor
+Summary:    {{ description }}
 License:    GPL-3.0-or-later
-URL:        https://pulsar-edit.dev
+URL:        {{ homepage }}
 Source0:    {{ source_folder_name }}.tar.gz
 AutoReqProv: no # Avoid libchromiumcontent.so missing dependency
 
@@ -18,7 +18,7 @@ BuildRequires: {{ build_dependencies | join: ' ' }}
 %define _build_id_links none
 
 %description
-Pulsar editor built with OmniPackage
+{{ description }}
 
 
 %prep
@@ -35,7 +35,6 @@ Pulsar editor built with OmniPackage
 %files
 /usr/lib/%{name}/
 /usr/bin/%{name}
-/usr/bin/ppm
 /usr/share/applications/%{name}.desktop
 /usr/share/icons/hicolor/16x16/apps/%{name}.png
 /usr/share/icons/hicolor/22x22/apps/%{name}.png
@@ -49,5 +48,5 @@ Pulsar editor built with OmniPackage
 
 
 %changelog
-* Sun Feb 18 2024 Chuck Norris <chuck@norr.is>
-- Chuck Norris does not use revision control software. None of his code has ever needed revision.
+* Tue Apr 01 2025 {{ maintainer }}
+- Release {{ version }}.
