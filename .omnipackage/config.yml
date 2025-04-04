@@ -58,3 +58,13 @@ builds:
   <<: *deb
 - distro: 'ubuntu_24.04'
   <<: *deb
+- distro: 'debian_10'
+  <<: *deb
+- distro: 'debian_11'
+  <<: *deb
+- distro: 'debian_12'
+  <<: *deb
+- distro: 'debian_testing'
+  <<: *deb
+- distro: 'debian_unstable'
+  <<: *deb
