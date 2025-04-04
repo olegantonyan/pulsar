@@ -7,7 +7,7 @@ extract_version:
 common: &common
   package_name: pulsar-dev
   ppm_executable: ppm-dev
-  before_build_script: .omnipackage/install_nvm.sh
+  before_build_script: .omnipackage/nvm.sh
   maintainer: Oleg Antonyan <oleg.b.antonyan@gmail.com>
   homepage: https://pulsar-edit.dev
   description: A Community-led Hyper-Hackable Text Editor
@@ -28,7 +28,12 @@ opensuse: &opensuse
   <<: *rpm
 
 redhat: &redhat
-  build_dependencies: ['libsecret-devel', 'libX11-devel', 'libxkbfile-devel', 'gcc', 'gcc-c++', 'make', 'python3-setuptools', 'curl', 'git', 'openssl-devel']
+  build_dependencies: ['libsecret-devel', 'libX11-devel', 'gcc', 'gcc-c++', 'make', 'curl', 'git', 'openssl-devel']
+  <<: *rpm
+  before_build_script: .omnipackage/nvm_rhel.sh
+
+fedora: &fedora
+  build_dependencies: ['libsecret-devel', 'libX11-devel', 'libxkbcommon-devel', 'gcc', 'gcc-c++', 'make', 'python3-setuptools', 'curl', 'git', 'openssl-devel']
   <<: *rpm
 
 builds:
@@ -43,15 +48,15 @@ builds:
 - distro: 'opensuse_15.3'
   <<: *opensuse
 - distro: 'fedora_38'
-  <<: *redhat
+  <<: *fedora
 - distro: 'fedora_39'
-  <<: *redhat
+  <<: *fedora
 - distro: 'fedora_40'
-  <<: *redhat
+  <<: *fedora
 - distro: 'fedora_41'
-  <<: *redhat
-- distro: 'fedora_rawhide'
-  <<: *redhat
+  <<: *fedora
+#- distro: 'fedora_rawhide'
+#  <<: *fedora
 - distro: 'ubuntu_20.04'
   <<: *deb
 - distro: 'ubuntu_22.04'
@@ -68,3 +73,7 @@ builds:
   <<: *deb
 - distro: 'debian_unstable'
   <<: *deb
+- distro: 'rockylinux_8'
+  <<: *redhat
+- distro: 'rockylinux_9'
+  <<: *redhat
