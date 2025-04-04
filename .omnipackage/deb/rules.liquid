@@ -10,4 +10,4 @@ export DESTROOT=$(CURDIR)/debian/{{ package_name }}
 	dh $@ --parallel
 
 override_dh_auto_install:
-	$(CURDIR)/.omnipackage/install.sh $(DESTROOT) {{ package_name }}
+	$(CURDIR)/.omnipackage/install.sh $(DESTROOT) {{ package_name }} {{ ppm_executable }}
