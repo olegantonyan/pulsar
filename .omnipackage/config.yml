@@ -33,7 +33,11 @@ redhat: &redhat
   before_build_script: .omnipackage/nvm_rhel.sh
 
 fedora: &fedora
-  build_dependencies: ['libsecret-devel', 'libX11-devel', 'libxkbcommon-devel', 'gcc', 'gcc-c++', 'make', 'python3-setuptools', 'curl', 'git', 'openssl-devel']
+  build_dependencies: ['libsecret-devel', 'libX11-devel', 'libxkbfile-devel', 'gcc', 'gcc-c++', 'make', 'python3-setuptools', 'curl', 'git', 'lib64openssl-devel']
+  <<: *rpm
+
+mageia: &mageia
+  build_dependencies: ['lib64secret-devel', 'lib64x11-devel', 'lib64xkbfile-devel', 'gcc', 'gcc-c++', 'make', 'python3-setuptools', 'curl', 'git', 'openssl-devel']
   <<: *rpm
 
 builds:
@@ -77,3 +81,9 @@ builds:
   <<: *redhat
 - distro: 'rockylinux_9'
   <<: *redhat
+- distro: 'mageia_8'
+  <<: *mageia
+- distro: 'mageia_9'
+  <<: *mageia
+- distro: 'mageia_cauldron'
+  <<: *mageia
