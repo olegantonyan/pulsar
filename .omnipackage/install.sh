@@ -32,6 +32,10 @@ mkdir -p $BUILDROOT/usr/lib/$NAME
 tar xf dist/*.tar.gz -C $BUILDROOT/usr/lib/$NAME --strip-components=1
 rm -rf $BUILDROOT/usr/lib/$NAME/resources/app/ppm/spec # shebang in some files there messes up the dependencies
 
+# Mageia 8:  Sorry: TabError: inconsistent use of tabs and spaces in indentation (find.py, line 13)
+rm -rf $BUILDROOT/usr/lib/$NAME/resources/app/ppm/node_modules/jasmine-node/node_modules/walkdir/test/
+rm -rf $BUILDROOT/usr/lib/$NAME/resources/app/ppm/node_modules/walkdir/test
+
 mkdir -p $BUILDROOT/usr/bin/
 ln -sf /usr/lib/$NAME/resources/pulsar.sh $BUILDROOT/usr/bin/$NAME
 ln -sf /usr/lib/$NAME/resources/app/ppm/bin/apm $BUILDROOT/usr/bin/$PPM_EXECUTABLE
