@@ -17,14 +17,7 @@ node -v
 
 yarn install
 yarn build
-
-
-if yarn build:apm; then
-  echo "ok"
-else
-  cp -R ~/.npm/_logs $BUILDROOT/
-  exit 1
-fi
+yarn build:apm
 
 yarn dist tar.gz
 
