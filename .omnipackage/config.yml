@@ -42,7 +42,7 @@ mageia: &mageia
 
 debian_testing: &debian_testing
   <<: *deb
-  build_dependencies: ['libsecret-1-dev', 'libx11-dev', 'libxkbfile-dev', 'build-essential', 'python3-setuptools', 'curl', 'git', 'libxshmfence-dev', 'libnss3-dev', 'libnspr4-dev', 'libatk1.0-dev', 'libatk-bridge2.0-dev', 'libdbus-1-dev', 'libgdk-pixbuf-xlib-2.0-dev', 'libgtk-3-dev', 'libpango1.0-dev', 'libcairo2-dev', 'libxcomposite-dev', 'libxdamage-dev', 'libxfixes-dev', 'libxrandr-dev', 'libxkbcommon-dev', 'libgbm-dev', 'libasound2-dev', 'libcups2-dev', 'libatspi2.0-dev', 'libssl-dev']
+  build_dependencies: ['libsecret-1-dev', 'libx11-dev', 'libxkbfile-dev', 'build-essential', 'python3-setuptools', 'curl', 'git', 'libxshmfence-dev', 'libnss3-dev', 'libnspr4-dev', 'libatk1.0-dev', 'libatk-bridge2.0-dev', 'libdbus-1-dev', 'libgdk-pixbuf-xlib-2.0-dev', 'libgtk-3-dev', 'libpango1.0-dev', 'libcairo2-dev', 'libxcomposite-dev', 'libxdamage-dev', 'libxfixes-dev', 'libxrandr-dev', 'libxkbcommon-dev', 'libgbm-dev', 'libasound2-dev', 'libcups2-dev', 'libatspi2.0-dev', 'libssl-dev', 'libcurl4-openssl-dev']
 
 builds:
 - distro: 'opensuse_tumbleweed'
@@ -77,10 +77,10 @@ builds:
   <<: *deb
 - distro: 'debian_12'
   <<: *deb
-#- distro: 'debian_testing'
-#  <<: *debian_testing
-#- distro: 'debian_unstable'
-#  <<: *debian_testing
+- distro: 'debian_testing'
+  <<: *debian_testing
+- distro: 'debian_unstable'
+  <<: *debian_testing
 - distro: 'rockylinux_8'
   <<: *redhat
 - distro: 'rockylinux_9'
