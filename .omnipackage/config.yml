@@ -63,6 +63,8 @@ builds:
   <<: *fedora
 - distro: 'fedora_41'
   <<: *fedora
+- distro: 'fedora_42'
+  <<: *fedora
 #- distro: 'fedora_rawhide'
 #  <<: *fedora
 - distro: 'ubuntu_20.04'
